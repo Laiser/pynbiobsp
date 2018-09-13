@@ -5,7 +5,7 @@
 import MySQLdb
 
 # Gera a string de conexao ex.: seu host, seu usuario, sua senha e seu db
-db = MySQLdb.connect(host="200.132.35.233", user="root", passwd="iotclass", db="dbapi")
+db = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
 # Posiciona o cursor
 cursor = db.cursor()
 # Executa a consulta na tabela selecionada
