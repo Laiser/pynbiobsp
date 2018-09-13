@@ -36,7 +36,6 @@ cmd.execute("SELECT BIOMETRIA FROM BIOMETRIAS WHERE BIOMETRIA <> '' ")
 numrows = int(cmd.rowcount)
 
 # Algumas frescuras
-
 print " BUSCANDO BIOMETRIA...."
 
 # Laço for para retornar os valores, ex.: row[0] primeira coluna, row[1] segunda coluna, row[2] terceira coluna, etc.
