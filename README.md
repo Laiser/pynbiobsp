@@ -1,6 +1,5 @@
 
-
-## Obs: a versão testada foi compilada no gcc versão 5.4.0 na versão 7 ocorreu um erro ainda não solucionado.
+## Obs: A versão testada foi compilada no gcc versão 5.4.0, na versão 7 ocorreu um erro ainda não solucionado.
 
 
 
@@ -33,18 +32,13 @@ sudo cp NBioBSP.lic /lib
 sudo cp linux_x86_x64/libNBioBSP.so /lib
 
 
-
-## Voltar para a pasta anterior
+## Instalar Driver do leitor biométrico
 
 cd ..
 
 cd hamster-iii/
 
 cd ngstardrv-v1.0.5-2-Ubuntu14.04-64bit/
-
-
-
-## Instalar Driver
 
 sudo ./CreateModule
 
