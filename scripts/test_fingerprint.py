@@ -7,7 +7,7 @@ import MySQLdb
 pnbio.init()
 
 # Gera a string de conexao ex.: seu host, seu usuario, sua senha e seu db
-db = MySQLdb.connect(host="200.132.35.233", user="root", passwd="iotclass", db="dbapi")
+db = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
 
 print('Insert the first fingerprint: ')
 fir1 = pnbio.capture(10000)

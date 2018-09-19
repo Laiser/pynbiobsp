@@ -1,89 +1,55 @@
-# Nitgen Hamster III Module for Python 2.7.x and 3.x
-
-Digital fingerprint reader module for Python using Nitgen device.
-Install the driver that is the "driver" directory.
-
-## Acknowledgments
-
-Thanks to [Fingertech](http://www.fingertech.com.br) for all support and investment,
-without this partnership it would not be possible to maintain this project.
 
 
-## Install Nitgen Hamster driver
+## Obs: a versão testada foi compilada no gcc versão 5.4.0 na versão 7 ocorreu um erro aindanão solucionado.
 
-```bash
 
-$ sudo apt-get install g++ gcc linux-headers build-essential make  python-dev autotools-dev libicu-dev libbz2-dev
-$ git clone https://github.com/paulopinda/python-nbiobsp.git
-$ cd python-nbiobsp
-$ cd utils/libs
 
-$ # Install libs
-$ sudo cp NBioBSP.lic /lib
-$ sudo cp libs/linux_<x86_x64/x86>/libNBioBSP.so /lib
+## Instalar 
 
-$ # Install driver
-$ cd hamster-iii
-$ tar -xzvf ngstardrv-...# choose 32 or 64bits
-$ cd ngstardrv-...
-$ ./CreateModule
-$ sudo ./install.sh
+sudo apt-get install python-pip
 
-```
+pip install --upgrade setuptools
 
-## Message: 'required key not available'
+sudo apt-get install python-mysqldb
 
-I had a problem loading kernel module and the following message appeared: 
-'required key not available'. I used mokutil to disable secure boot mode.
+sudo apt-get install git
 
-```bash
-$ sudo mokutil --disable-validation
-```
+pip install pynbiobsp
 
-Reboot and change boot state.
 
-## Install from Pypi
 
-```bash
 
-$ pip install pynbiobsp
-$ test_fingerprint.py # for tests.
+## Baixar os arquivos:
 
-```
+git clone https://github.com/Laiser/pynbiobsp.git
 
-## Install from Github
+cd pynbiobsp/utils/libs/
 
-```bash
 
-$ git clone https://github.com/paulopinda/python-nbiobsp.git
-$ cd python-nbiobsp
-$ pip install pybind11
-$ python setup.py build install
 
-```
+## Copiar arquivos para a pata lib
 
-## Example
+sudo cp NBioBSP.lic /lib
 
-Simple example who capture two fingerprints and validate.
+sudo cp linux_x86_x64/libNBioBSP.so /lib
 
-```python
-import pynbiobsp as pnbio
-pnbio.init()
 
-print('Insert the first fingerprint: ')
-fir1 = pnbio.capture(10000)
 
-print('Insert the second fingerprint: ')
-fir2 = pnbio.capture(10000)
+## Voltar para a pasta anterior
 
-if pnbio.match(fir1, fir2):
-    print('OK!')
-else:
-    print('NOK!')
+cd ..
 
-pnbio.close()
-```
+cd hamster-iii/
 
-## Contribute
+cd ngstardrv-v1.0.5-2-Ubuntu14.04-64bit/
 
-If anything is missing from the code or the README.md documentation, please send me a PULL REQUEST.
+
+
+## Instalar Driver
+
+sudo ./CreateModule
+
+sudo ./install.sh
+
+
+## Os arquivos para testes está na pasta /scripts
