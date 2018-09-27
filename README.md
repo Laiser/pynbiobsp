@@ -23,7 +23,7 @@ git clone https://github.com/Laiser/pynbiobsp.git
 
 
 
-## Copiar arquivos para a pata lib
+## Copiar arquivos para a pasta lib
 
 cd pynbiobsp/utils/libs/
 

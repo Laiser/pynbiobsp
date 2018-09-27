@@ -5,9 +5,9 @@
 import MySQLdb
 
 # Gera a string de conexao ex.: seu host, seu usuario, sua senha e seu db
-db = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
+conn = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
 # Posiciona o cursor
-cursor = db.cursor()
+cursor = conn.cursor()
 # Executa a consulta na tabela selecionada
 cursor.execute("SELECT * FROM `PESSOAS` WHERE NOME LIKE 'ALTA%'")
 # Conta o numero de linhas na tabela

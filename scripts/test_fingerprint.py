@@ -2,32 +2,25 @@
 # -*- coding: utf-8 -*-
 
 import pynbiobsp as pnbio
-import MySQLdb
 
 pnbio.init()
 
-# Gera a string de conexao ex.: seu host, seu usuario, sua senha e seu db
-db = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
+print('Posicione o dedo no leitor para realizar a leitura: ')
+print('')
 
-print('Insert the first fingerprint: ')
+# primeira leitura
 fir1 = pnbio.capture(10000)
-print fir1;
+print ('Primeira leitura:'), ('OK!')
+print('Tamanho do HASH gerado:'), len(fir1);
+print('')
 
-
-print('Insert the second fingerprint: ')
+# segunda leitura
 fir2 = pnbio.capture(10000)
+print('Realizando a segunda leitura:'), ('OK!')
+print('Tamanho do HASH gerado:'), len(fir2);
+print('')
 
 if pnbio.match(fir1, fir2):
-    print('OK!')
-
-# Posiciona o cursor
-cursor = db.cursor()
-# Executa a consulta na tabela selecionada
-sql = "INSERT INTO `BIOMETRIAS`(`ID_BIOMETRIA`, `ID_PESSOA`, `BIOMETRIA`, `IND_MAO`, `DEDO`) VALUES (%s, %s,%s,%s,%s)"
-valores = ("1","127","fir1","1","1")
-cursor.execute(sql,valores)
-
-#else:
- #   print('NOK!')
+    print('As duas leituras conferem!')
 
 pnbio.close()
