@@ -7,7 +7,7 @@ import MySQLdb
 pnbio.init()
 
 #string de conexao
-conn = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
+conn = MySQLdb.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
 
 print('Posicione o dedo no leitor para realizar a leitura: ')
 print('')
@@ -26,7 +26,7 @@ print('')
 
 # função para verficar leituras
 if pnbio.match(fir1, fir2):
-    print('As duas leituras conferem!')
+    print('Leituras conferidas...')
     print('')
 
 # Posiciona o cursor
@@ -34,11 +34,13 @@ cmd = conn.cursor()
 
 
 try:
-   cmd.execute("""INSERT INTO BIOMETRIAS(ID_PESSOA, BIOMETRIA, IND_MAO, DEDO) VALUES (%s, %s, %s, %s)""",(127,fir1,1,1))
+   cmd.execute("INSERT INTO BIOMETRIAS(ID_PESSOA, BIOMETRIA, IND_MAO, DEDO) VALUES (%s, %s, %s, %s)",(127,fir1,1,1))
    conn.commit()
-   print('Biometria registrada com sucesso!!!')
-except:
-   conn.rollback()
+   print('Biometria registrada com sucesso!!!')    
 
+except (MySQLdb.Error, MySQLdb.Warning) as e:
+   print(e)
 
+ 
+   
 pnbio.close()

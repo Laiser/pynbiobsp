@@ -7,7 +7,7 @@ import MySQLdb
 pnbio.init()
 
 # string de conexao
-conn = MySQLdb.connect(host="IP DO BANCO", user="USUÁRIO", passwd="SENHA", db="BANCO")
+conn = MySQLdb.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
 cmd = conn.cursor()
 
 print('Posicione o dedo no leitor para realizar a leitura: ')
