@@ -5,6 +5,8 @@
 
 ## Instalar 
 
+sudo apt-get install raspberrypi-kernel-headers
+
 sudo apt-get install python-pip
 
 pip install --upgrade setuptools
