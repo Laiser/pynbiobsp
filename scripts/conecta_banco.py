@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # Importa o modulo de conexao com o mysql
-import MySQLdb
+import MySQLdb as bd
 
 # Gera a string de conexao ex.: seu host, seu usuario, sua senha e seu db
-conn = MySQLdb.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
+conn = bd.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
 # Posiciona o cursor
 cursor = conn.cursor()
 # Executa a consulta na tabela selecionada

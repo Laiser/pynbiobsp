@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import pynbiobsp as pnbio
-import MySQLdb
+import MySQLdb as bd
+
 
 pnbio.init()
 
 #string de conexao
-conn = MySQLdb.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
+conn = bd.connect(host="IP DO SERVIDOR", user="USUÁRIO", passwd="SENHA", db="NOME DO BANCO")
 
 print('Posicione o dedo no leitor para realizar a leitura: ')
 print('')
@@ -15,13 +16,13 @@ print('')
 # primeira leitura
 fir1 = pnbio.capture(10000)
 print ('Primeira leitura:'), ('OK!')
-print('Tamanho do HASH gerado:'), len(fir1);
+print('Tamanho do HASH gerado:'), len(fir1)
 print('')
 
 # segunda leitura
 fir2 = pnbio.capture(10000)
 print('Realizando a segunda leitura:'), ('OK!')
-print('Tamanho do HASH gerado:'), len(fir2);
+print('Tamanho do HASH gerado:'), len(fir2)
 print('')
 
 # função para verficar leituras
@@ -38,7 +39,8 @@ try:
    conn.commit()
    print('Biometria registrada com sucesso!!!')    
 
-except (MySQLdb.Error, MySQLdb.Warning) as e:
+
+except conn.Error as e:
    print(e)
 
  

@@ -11,13 +11,13 @@ print('')
 # primeira leitura
 fir1 = pnbio.capture(10000)
 print ('Primeira leitura:'), ('OK!')
-print('Tamanho do HASH gerado:'), len(fir1);
+print('Tamanho do HASH gerado:'), len(fir1)
 print('')
 
 # segunda leitura
 fir2 = pnbio.capture(10000)
 print('Realizando a segunda leitura:'), ('OK!')
-print('Tamanho do HASH gerado:'), len(fir2);
+print('Tamanho do HASH gerado:'), len(fir2)
 print('')
 
 if pnbio.match(fir1, fir2):
