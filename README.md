@@ -15,7 +15,7 @@ sudo apt-get install python-mysqldb
 
 sudo apt-get install git
 
-pip install pynbiobsp
+
 
 
 ## Baixar os arquivos:
@@ -54,6 +54,7 @@ sudo ./CreateModule
 
 sudo ./install.sh
 
+pip install pynbiobsp
 
 ## Instalar Driver do leitor biométrico(Na RaspBerry)
 
@@ -63,5 +64,6 @@ cd ngstardrv-v1.0.5-3-patch2-Raspbian-ubuntuMATE-Xubuntu_16.04.2-rpi2_3/
 
 sudo ./install.sh
 
+pip install pynbiobsp
 
 ## Os arquivos para testes estão na pasta /scripts
