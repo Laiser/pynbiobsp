@@ -1,6 +1,7 @@
 
 ## Obs: A versão testada foi compilada no gcc versão 5.4.0, na versão 7 ocorreu um erro ainda não solucionado.
-
+## Sistemas Operacionais testados com raspberry: Raspbian kernel 4.4, Ubuntu Mate 16(ARM)
+## MODULO HFDU06S
 
 
 ## Softwares necessários 
