@@ -1,5 +1,6 @@
 #include <iostream>
 #include <pybind11/pybind11.h>
+namespace py = pybind11;
 
 #include "NBioAPI.h"
 #include "NBioAPI_Export.h"
@@ -245,12 +246,14 @@ bool NBioBSP_Verify_Figer()
     return false;
 }
 
+using namespace pybind11::literals;
+
 PYBIND11_MODULE(pynbiobsp, module)
 {
     module.doc() = "NBioBSP module for Python to device Nitgen Hamster III";
     module.def("init", &NBioBSP_Init, "Initialize the device");
     module.def("close", &NBioBSP_Close, "Close the device");
-    module.def("capture", &NBioBSP_Capture, "Capture FIR template from fingerprint.", "enRoll"__a=false);
+    module.def("capture", &NBioBSP_Capture, "Capture FIR template from fingerprint.", py::arg("enRoll")=false, "enRoll"_a = false);
     module.def("match", &NBioBSP_Match, "Match two FIRs template.");
     module.def("verify_finger", &NBioBSP_Verify_Figer, "Checks if there is a finger on the sensor.");
 }
