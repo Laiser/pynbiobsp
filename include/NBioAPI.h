@@ -11,7 +11,12 @@ extern "C" {
 #ifndef _NBioAPI_LOAD_LIBRARY
 
    /* Initializing Functions */
+#ifdef _ANDROID
+   NBioAPI_RETURN NBioAPI NBioAPI_Init       (NBioAPI_HANDLE_PTR  phHandle, const NBioAPI_CHAR* szSerialCode);
+#else
    NBioAPI_RETURN NBioAPI NBioAPI_Init       (NBioAPI_HANDLE_PTR  phHandle);
+#endif // _ANDROID
+
    NBioAPI_RETURN NBioAPI NBioAPI_Terminate  (NBioAPI_HANDLE hHandle);
 
    /* Validity Check Function */
@@ -30,11 +35,14 @@ extern "C" {
                                                  NBioAPI_DEVICE_INFO_EX** ppDeviceInfoEx);
 
    NBioAPI_RETURN NBioAPI NBioAPI_OpenDevice     (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID);
+   NBioAPI_RETURN NBioAPI NBioAPI_OpenDeviceVerifyCode(NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_BYTE_PTR pCode, NBioAPI_UINT32 nCodeSize);
    NBioAPI_RETURN NBioAPI NBioAPI_CloseDevice    (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID);
    NBioAPI_RETURN NBioAPI NBioAPI_GetDeviceInfo  (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_INFO_PTR pDeviceInfo);
    NBioAPI_RETURN NBioAPI NBioAPI_SetDeviceInfo  (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_INFO_PTR pDeviceInfo);
    NBioAPI_RETURN NBioAPI NBioAPI_AdjustDevice   (NBioAPI_HANDLE hHandle, const NBioAPI_WINDOW_OPTION_PTR pWindowOption);
+   NBioAPI_RETURN NBioAPI NBioAPI_GetDeviceDriverVersionInfo(NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_DRIVER_INFO_PTR pDeviceDriverVersionInfo);
    NBioAPI_DEVICE_ID NBioAPI NBioAPI_GetOpenedDeviceID(NBioAPI_HANDLE hHandle);
+   NBioAPI_RETURN NBioAPI NBioAPI_SetLFDLevel(NBioAPI_HANDLE hHandle, NBioAPI_UINT32 nLFDLevel);
    
    /* Memory Functions */
    NBioAPI_RETURN NBioAPI NBioAPI_FreeFIRHandle       (NBioAPI_HANDLE hHandle, NBioAPI_FIR_HANDLE hFIR);
@@ -77,6 +85,14 @@ extern "C" {
                                           const NBioAPI_INPUT_FIR_PTR     piStoredTemplate,
                                           NBioAPI_BOOL*                   pbResult,
                                           NBioAPI_FIR_PAYLOAD_PTR         pPayload);
+
+   NBioAPI_RETURN NBioAPI NBioAPI_VerifyMatchScore (
+                                          NBioAPI_HANDLE                  hHandle, 
+                                          const NBioAPI_INPUT_FIR_PTR     piProcessedFIR,
+                                          const NBioAPI_INPUT_FIR_PTR     piStoredTemplate,
+                                          NBioAPI_BOOL*                   pbResult,
+                                          NBioAPI_FIR_PAYLOAD_PTR         pPayload,
+										  NBioAPI_FLOAT*                  pfScore);
    
    NBioAPI_RETURN NBioAPI NBioAPI_VerifyMatchEx (
                                           NBioAPI_HANDLE                  hHandle, 
@@ -135,7 +151,12 @@ extern "C" {
 #endif/* _NBioAPI_LOAD_LIBRARY */
    
    /* typedef for GetProcAddress() */
+#ifdef _ANDROID
+   typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_Init)        (NBioAPI_HANDLE_PTR  phHandle, const NBioAPI_CHAR* szSerialCode);
+#else
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_Init)        (NBioAPI_HANDLE_PTR  phHandle);
+#endif // _ANDROID
+
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_Terminate)   (NBioAPI_HANDLE hHandle);
    
    /* Validity Check Function */
@@ -157,8 +178,11 @@ extern "C" {
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_CloseDevice)    (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID);
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_GetDeviceInfo)  (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_INFO_PTR pDeviceInfo);
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_SetDeviceInfo)  (NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_INFO_PTR pDeviceInfo);
+   typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_GetDeviceDriverVersionInfo) ( NBioAPI_HANDLE hHandle, NBioAPI_DEVICE_ID nDeviceID, NBioAPI_UINT8 nStructureType, NBioAPI_DEVICE_DRIVER_INFO_PTR pDeviceDriverVersionInfo );
+
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_AdjustDevice)   (NBioAPI_HANDLE hHandle, const NBioAPI_WINDOW_OPTION_PTR pWindowOption);
    typedef NBioAPI_DEVICE_ID (NBioAPI *FP_NBioAPI_GetOpenedDeviceID)(NBioAPI_HANDLE hHandle);
+   typedef NBioAPI_DEVICE_ID (NBioAPI *FP_NBioAPI_SetLFDLevel) (NBioAPI_HANDLE hHandle, NBioAPI_UINT32 nLFDLevel);
    
    /* Memory Functions */
    typedef NBioAPI_RETURN (NBioAPI *FP_NBioAPI_FreeFIRHandle)      (NBioAPI_HANDLE hHandle, NBioAPI_FIR_HANDLE hFIR);
