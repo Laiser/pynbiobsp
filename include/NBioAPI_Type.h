@@ -181,6 +181,18 @@ typedef struct nbioapi_device_info_0
    NBioAPI_UINT32    Gain;             //!< Gain information
 } NBioAPI_DEVICE_INFO_0, * NBioAPI_DEVICE_INFO_PTR_0;
 
+/* NBioAPI_DEVICE_INFO_1 */
+
+typedef struct nbioapi_device_info_1 {
+	NBioAPI_UINT32      StructureType;  /* must be 1 */
+	NBioAPI_UINT32      DevLibVer;      /* Read Only */
+	NBioAPI_UINT32      DevModVer;      /* Read Only */
+	NBioAPI_UINT32      DeviceType;     /* Read Only */
+	NBioAPI_UINT16      DevFirmwareVer; /* Read Only */
+	NBioAPI_UINT16      DevVID;         /* Read Only */
+	NBioAPI_UINT16      DevPID;         /* Read Only */
+} NBioAPI_DEVICE_INFO_1, *NBioAPI_DEVICE_INFO_PTR_1;
+
 /*!
    NBioAPI_DEVICE_INFO_PTR
 */
@@ -206,7 +218,9 @@ typedef NBioAPI_UINT8                        NBioAPI_DEVICE_NAME;
 #define NBioAPI_DEVICE_NAME_FSC01            (0x05)      // SmartCombo
 #define NBioAPI_DEVICE_NAME_FDU03            (0x06)      // USB type Mouse
 #define NBioAPI_DEVICE_NAME_FDU05            (0x07)      // USB type HFDU 05/07
-#define NBioAPI_DEVICE_NAME_FDU08            (0x08)      // USB type PFDU 08
+#define NBioAPI_DEVICE_NAME_FDU08            (0x08)      // USB type HFDU 08
+#define NBioAPI_DEVICE_NAME_FDU09            (0x09)      // USB type HFDU 09
+#define NBioAPI_DEVICE_NAME_FDU10            (0x0A)      // USB type HFDU 10 (eNBioScan-F2)
 
 #define NBioAPI_DEVICE_NAME_ADDITIONAL       (0x10)      // Additional Device
 #define NBioAPI_DEVICE_NAME_ADDITIONAL_MAX   (0x9F)   
@@ -549,3 +563,64 @@ typedef struct nbioapi_deviceinfoex
 
    NBioAPI_UINT32    Reserved[8];            //!< reserved
 } NBioAPI_DEVICE_INFO_EX, *NBioAPI_DEVICE_INFO_EX_PTR;
+
+
+/*!
+   \struct NBioAPI_DEVICE_DRIVER_VERSION_INFO_0
+   \brief eNBioBSP SDK Device Driver Version information
+*/
+typedef struct nbioapi_device_driver_version_info_0 
+{
+   NBioAPI_UINT32	StructureType;    //!< must be 0
+
+   NBioAPI_UINT16	DllVersionMajor;
+   NBioAPI_UINT16	DllVersionMinor;
+   NBioAPI_UINT16	DllVersionBuild;
+   NBioAPI_UINT16	DllVersionQFE;
+
+   NBioAPI_UINT16	SysVersionMajor;
+   NBioAPI_UINT16	SysVersionMinor;
+   NBioAPI_UINT16	SysVersionBuild;
+   NBioAPI_UINT16	SysVersionQFE;
+   
+} NBioAPI_DEVICE_DRIVER_VERSION_INFO_0, *NBioAPI_DEVICE_DRIVER_VERSION_INFO_PTR_0;
+
+/*!
+   NBioAPI_DEVICE_INFO_PTR
+*/
+typedef NBioAPI_VOID_PTR    NBioAPI_DEVICE_DRIVER_INFO_PTR;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*!
+	\struct NBioapi_MATCH_ALIGN_INFO
+	\brief eNBioBSP SDK feature & match information
+*/
+typedef struct nbioapi_match_align_info{
+
+	int set1_count;			// Probe Æ¯Â¡Á¡ °³¼ö
+	int set1_dir[120];
+	int set1_type[120];		// 0:Branch, 1:End Point, 2:Matched Branch, 3:Matched End Point
+	int	set1_x[120];
+	int	set1_y[120];
+
+	int set2_count;			// Gallery Æ¯Â¡Á¡ °³¼ö
+	int set2_dir[120];
+	int set2_type[120];
+	int	set2_x[120];
+	int	set2_y[120];
+} NBioapi_MATCH_ALIGN_INFO, *NBioapi_MATCH_ALIGN_INFO_PTR_0;
+
+typedef NBioAPI_VOID_PTR	NBioapi_MATCH_ALIGN_INFO_PTR;
